@@ -1,0 +1,10 @@
+#!/bin/bash
+
+main() {
+    cd /home/yavor/Desktop/chess-project
+    gdb -batch -ex tests
+    read -n 1
+}
+
+export -f main
+bash -c 'main'

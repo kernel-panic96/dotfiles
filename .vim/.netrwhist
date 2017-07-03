@@ -1,0 +1,8 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_1='/home/yavor'
+let g:netrw_dirhist_2='/home/yavor/.vim'
+let g:netrw_dirhist_3='/home/yavor/Desktop/buildLispBook/9_chapter'
+let g:netrw_dirhist_4='/home/yavor/.tmux'
+let g:netrw_dirhist_5='/etc/apt/sources.list.d'
+let g:netrw_dirhist_6='systemd-private-6681a9bf308f4038a53767c24299f152-colord.service-ZL6CTX'

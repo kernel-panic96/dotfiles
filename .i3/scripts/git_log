@@ -1,0 +1,11 @@
+#!/bin/bash
+
+main() {
+    cd /home/yavor/Desktop/chess-project
+    git log --oneline -5
+    git status -b --short
+    read -n 1
+}
+
+export -f main
+bash -c 'main'

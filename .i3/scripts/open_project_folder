@@ -1,0 +1,9 @@
+#!/bin/bash
+
+main() {
+    cd /home/yavor/Desktop/chess-project
+}
+
+export -f main
+bash -c ' main; bash'
+

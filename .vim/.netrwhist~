@@ -1,0 +1,7 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_1='/home/yavor'
+let g:netrw_dirhist_2='/home/yavor/.vim'
+let g:netrw_dirhist_3='/home/yavor/Desktop/buildLispBook/9_chapter'
+let g:netrw_dirhist_4='/home/yavor/.tmux'
+let g:netrw_dirhist_5='/etc/apt/sources.list.d'

@@ -1,0 +1,11 @@
+#!/bin/bash 
+
+i3-msg -t command 'layout splitv'
+i3-msg -t command exec 'termite --name=DEV --exec=/home/yavor/.i3/scripts/open_project_folder'
+i3-msg -t command exec "termite --name=DEV --role=DEV_INFO --exec=/home/yavor/.i3/scripts/git_log"
+i3-msg -t command exec "termite --name=DEV --role=DEV_INFO --exec=/home/yavor/.i3/scripts/run_tests"
+sleep 1
+i3-msg -t command 'move left'
+i3-msg focus left
+sleep 1
+i3-msg focus down
