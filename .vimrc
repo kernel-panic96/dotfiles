@@ -37,9 +37,10 @@ let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 
 let mapleader = " "
-
-nnoremap <F4> :NERDTreeToggle<CR>
 nnoremap <CR> :nohlsearch<CR><CR>
+filetype plugin indent on    " required
+
+syntax on
 
 "Move lines with the arrow keys
 inoremap <Down> <ESC>ddpi
@@ -67,8 +68,8 @@ nmap <Leader>n :tabnew<CR>
 nmap <Leader>q :q<CR>
 nmap <Leader>w :w<CR>
 nmap <Leader>t :NERDTreeToggle<CR>
-
 nmap <C-Home> :tabnew<CR>
+
 ""Window bindings
 nmap <C-j> <C-W>j
 nmap <C-k> <C-W>k
@@ -80,6 +81,25 @@ nmap <C-n>v :sp
 nmap o o<Esc>
 nmap O O<Esc>
 nmap 0 ^
+"Tabs bindings
+nnoremap <C-PageUp> :tabnext<CR>
+nnoremap <C-PageDown> :tabprevious<CR>
+
+nnoremap tl :tabnext<CR>
+nnoremap th :tabprevious<CR>
+nnoremap tn :tabnew<CR>
+nnoremap td :tabclose<CR>
+
+nnoremap <C-End> :tabclose<CR>
+nnoremap <C-Home> :tabnew<CR>
+
+imap ( ()<Esc>i
+imap [ []<Esc>i
+imap { {}<Esc>i
+
+"Display line numbering
+set number
+set relativenumber
 
 "Replace tabs with spaces
 set tabstop=4 shiftwidth=4 expandtab
@@ -87,9 +107,35 @@ set backspace=indent,eol,start
 
 "make mappings
 "nnoremap <Leader>t :!make && gdb -batch -ex tests<CR>
+"Display time and date in the ruler bar
+set ruler
+set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
+
+"make mappings
 nnoremap <F5> :make<CR><CR>
 nnoremap <F6> :clist<CR>
 nnoremap <F7> :cnext<CR>:clist<CR>
 nnoremap <F8> :cprevious<CR>:clist<CR>
 
 nnoremap ; :
+"set laststatus=2
+"set statusline=%f "tail of the filename
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_force_omni_patterns')
+  let g:neocomplcache_force_omni_patterns = {}
+endif
+let g:neocomplcache_force_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_force_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplcache_force_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
