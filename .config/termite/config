@@ -1,32 +1,32 @@
 [colors]
-background = rgba(27,27,27,0.6)
 
-#autumn
-#foreground =   #ccbbb0
-foreground =   #9ab36b
-#background =   #1b1b1b
-cursor =       #000000   
-color0 =       #272727
-color8 =       #333333
-color1 =       #2fcc93
-color9 =       #7eeec6
-color2 =       #3ea24f
-color10 =      #8af69c
-color3 =       #7bba4d
-color11 =      #a8f470
-color4 =       #92893d
-color12 =      #ead41f
-color5 =       #a65841
-color13 =      #842e15
-#change 6
-color6 =       #b1b360
-color14 =      #4d4e21
-color7 =       #b3b3b3
-color15 =      #d2d2d2
+##autumn
+##foreground =   #ccbbb0
+#foreground =   #9ab36b
+##background =   #1b1b1b
+#cursor =       #000000   
+#color0 =       #272727
+#color8 =       #333333
+#color1 =       #2fcc93
+#color9 =       #7eeec6
+#color2 =       #3ea24f
+#color10 =      #8af69c
+#color3 =       #7bba4d
+#color11 =      #a8f470
+#color4 =       #92893d
+#color12 =      #ead41f
+#color5 =       #a65841
+#color13 =      #842e15
+##change 6
+#color6 =       #b1b360
+#color14 =      #4d4e21
+#color7 =       #b3b3b3
+#color15 =      #d2d2d2
+#background = rgba(27,27,27,0.5)
 
-#apple bright
+##apple bright
 #foreground =   #1b0b10
-#background =   #ccbbb0
+##background =   #ccbbb0
 #cursor =       #1b0b10
 #color0 =       #1b0b10
 #color8 =       #241016
@@ -92,3 +92,36 @@ color15 =      #d2d2d2
 ##white
 #color7 =  #E6EBE5
 #color15 = #D9D6CF
+
+font = Incosolata 10
+
+foreground = #e6e1dc
+foreground_bold = #e6e1dc
+cursor = #e6e1dc
+background = rgba(24, 19, 24, .6)
+
+# 16 color space
+color0  = #181818
+color1  = #da4939
+color2  = #a5c261
+color3  = #ffc66d
+color4  = #6d9cbe
+color5  = #b6b3eb
+color6  = #519f50
+color7  = #e6e1dc
+color8  = #5e5e5e
+color9  = #da4939
+color10 = #a5c261
+color11 = #ffc66d
+color12 = #6d9cbe
+color13 = #b6b3eb
+color14 = #519f50
+color15 = #f9f7f3
+
+# 256 color space
+color16 = #cc7833
+color17 = #bc9458
+color18 = #272727
+color19 = #3a3a3a
+color20 = #d4cfc9
+color21 = #f4f1ed

@@ -13,7 +13,7 @@ Plugin 'sickill/vim-monokai'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'xolox/vim-easytags'
 Plugin 'xolox/vim-misc'
-Plugin 'OmniSharp/omnisharp-vim'
+"Plugin 'OmniSharp/omnisharp-vim'
 
 call vundle#end()
 filetype plugin indent on
@@ -23,12 +23,14 @@ syntax on
 
 colorscheme default
 "colorscheme monokai
-hi Folded ctermbg=NONE
+
 set hlsearch
-set foldmethod=marker
+set nowrap
+set foldmethod=indent
 set number
 set relativenumber
 set ruler
+set foldmethod=syntax
 set rulerformat=%55(%{strftime('%a\ %b\ %e\ %I:%M\ %p')}\ %5l,%-6(%c%V%)\ %P%)
 
 "Cursor shape based on mode
@@ -49,7 +51,7 @@ nnoremap <Down> ddp
 nnoremap <Up> ddkkp
 
 "C comments
-imap // /*  */<Esc>hhi
+imap ** /*  */<Esc>hhi
 
 "Open the file under the cursor in a vertical split (like <Ctrl-W> f)
 map gv :vertical wincmd f<CR>
@@ -78,7 +80,6 @@ nmap <C-h> <C-W>h
 nmap <C-n>h :vsp 
 nmap <C-n>v :sp 
 
-nmap o o<Esc>
 nmap O O<Esc>
 nmap 0 ^
 "Tabs bindings
@@ -93,10 +94,6 @@ nnoremap td :tabclose<CR>
 nnoremap <C-End> :tabclose<CR>
 nnoremap <C-Home> :tabnew<CR>
 
-imap ( ()<Esc>i
-imap [ []<Esc>i
-imap { {}<Esc>i
-
 "Display line numbering
 set number
 set relativenumber
@@ -105,7 +102,6 @@ set relativenumber
 set tabstop=4 shiftwidth=4 expandtab
 set backspace=indent,eol,start
 
-"make mappings
 "nnoremap <Leader>t :!make && gdb -batch -ex tests<CR>
 "Display time and date in the ruler bar
 set ruler
@@ -120,6 +116,8 @@ nnoremap <F8> :cprevious<CR>:clist<CR>
 nnoremap ; :
 "set laststatus=2
 "set statusline=%f "tail of the filename
+
+hi Folded ctermbg=NONE
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS

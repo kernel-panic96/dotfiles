@@ -54,16 +54,20 @@ bindsym $mod+a focus parent
 
 #bindsym $mod+d focus child
 
-set $workspace1 "1: "
-set $workspace2 "2: "  
-set $workspace3 "3: "  
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"  
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+
 
 bindsym $mod+1 workspace $workspace1  
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
 bindsym $mod+7 workspace 7
 bindsym $mod+8 workspace 8
 bindsym $mod+9 workspace 9
@@ -72,8 +76,8 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
 bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
 bindsym $mod+Shift+8 move container to workspace 8
@@ -87,7 +91,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 #212121
 set $bg-color            #1b1b1b
-set $inactive-bg-color   #212121
+set $inactive-bg-color   #dbdbdb
 set $text-color          #f3f4f5
 set $inactive-text-color #676E7D
 set $urgent-bg-color     #E53935
@@ -115,17 +119,18 @@ mode "resize" {
 }
 
 mode "mode_launcher" {
-    bindsym f exec firefox
+    bindsym f exec firefox, mode "default"
+    bindsym q exec qutebrowser, mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
 mode "edit_configs" {
-    bindsym i exec termite --exec='sensible-editor /home/yavor/.i3/config'
-    bindsym b exec termite --exec='sensible-editor /home/yavor/.bashrc'
-    bindsym v exec termite --exec='sensible-editor /home/yavor/.vimrc'
-    bindsym t exec termite --exec='sensible-editor /home/yavor/.config/termite/config'
+    bindsym i exec termite --exec='vim /home/yavor/.i3/config', mode "default"
+    bindsym b exec termite --exec='vim /home/yavor/.bashrc', mode "default"
+    bindsym v exec termite --exec='vim /home/yavor/.vimrc', mode "default"
+    bindsym t exec termite --exec='vim /home/yavor/.config/termite/config', mode "default"
 
     bindsym j      mode "default"
     bindsym Return mode "default"
@@ -137,38 +142,43 @@ bindsym $mod+x mode "resize"
 bindsym $mod+o mode "mode_launcher"
 
 bar {
-        position top
-        strip_workspace_numbers yes
-        status_command i3status
-        tray_output primary
-        colors {
-            background $bg-color
-            separator #757575
-            #                  border             background         text
-            focused_workspace  $bg-color          $bg-color          $text-color
-            inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
-            urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
-        }
+        i3bar_command $HOME/.config/polybar/launch.sh
+        #position top
+        #strip_workspace_numbers yes
+        #status_command i3status
+        #tray_output primary
+        #colors {
+        #    background $bg-color
+        #    separator #757575
+        #    #                  border             background         text
+        #    focused_workspace  $bg-color          $bg-color          $text-color
+        #    inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        #    urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
+        #}
 }
 new_window normal 1
-hide_edge_borders both
-for_window [instance="^DEV$"] border pixel 1
-for_window [class="^DEV$"] border pixel 1
+
+gaps inner 10
+gaps outer 10
 
 assign [class="Firefox"] $workspace2
+assign [class="qutebrowser"] $workspace2
 assign [instance="DEV"] $workspace3
 
-no_focus  [window_role="DEV_INFO"]
-set $wallpaper /home/yavor/Pictures/wallpapers/3V298SV.jpg
-exec convert $wallpaper -resize $(xrandr | grep '*' | awk '{print $1}')! /tmp/lock-128.png
+for_window [class="^.*"] border pixel 
 
-bindsym $mod+Shift+x exec /home/yavor/.i3/scripts/lock.sh ~/.i3/lock-128.png
+no_focus  [window_role="DEV_INFO"]
+
+set $wallpaper /home/yavor/Pictures/wallpapers/gray-abstract.png
+#exec convert $wallpaper -resize $(xrandr | grep '*' | awk '{print $1}')! /tmp/lock-128.png
+
+bindsym $mod+Shift+x exec xscreensaver-command -lock
 
 #Startup
-#
-exec_always feh --bg-fill $wallpaper
-exec compton -b -m 0.0 -f
 
-exec_always xmodmap -e "clear lock" #disable caps lock switch
-exec_always xmodmap -e "keysym Caps_Lock = Escape" #set caps_lock as escape
-exec i3lock -i /home/yavor/Pictures/wallpapers/COdwIdj.png
+exec_always feh --bg-fill $wallpaper
+exec compton -b -f
+exec xscreensaver
+
+exec setxkbmap -option ctrl:nocaps
+exec xcape -e 'Control_L=Escape'
